@@ -1,0 +1,59 @@
+# Creating objects for the Delivery Management System
+
+# Create a Customer
+customer1 = Customer(name="Hamdan Albedwawi", contact="hamdan.albedwawi@gmail.com", address="45 Knowledge Avenue, Dubai, UAE")
+
+# Create Items
+item1 = Item(item_code="ITM001", description="Wireless Keyboard", quantity=1, unit_price=100.00)
+item2 = Item(item_code="ITM002", description="Wireless Mouse & Pad Set", quantity=1, unit_price=75.00)
+item3 = Item(item_code="ITM003", description="Laptop Cooling Pad", quantity=1, unit_price=120.00)
+item4 = Item(item_code="ITM004", description="Camera Lock", quantity=3, unit_price=15.00)
+
+# Create an Order
+order1 = Order(order_id=123456789, customer=customer1, delivery_method="Courier")
+order1.add_item(item1)
+order1.add_item(item2)
+order1.add_item(item3)
+order1.add_item(item4)
+
+# Create a Payment
+payment1 = Payment(payment_id=2025001, order_id=123456789, amount=283.50)
+payment1.set_status("Completed")  # Simulate successful payment
+
+# Assign a Delivery Person
+delivery_person1 = DeliveryPerson(name="Ahmed Al Mansoori", employee_id=7890, phone="+971-55-1234567")
+
+# Simulate the Delivery Process
+order1.update_status("Out for Delivery")
+delivery_person1.update_delivery_status(order_id=order1.get_order_id(), status="Out for Delivery")
+
+# Generate a Delivery Note
+delivery_note = f"""
+Delivery Note
+Thank you for using our delivery service! Please print your delivery receipt and present it upon receiving your items.
+
+Recipient Details:
+Name: {customer1.get_name()}
+Contact: {customer1.get_contact()}
+Delivery Address: {customer1.get_address()}
+
+Delivery Information:
+Order Number: {order1.get_order_id()}
+Delivery Method: {order1.get_delivery_method()}
+
+Summary of Items Delivered:
+---------------------------------
+{"Item Code":<10} {"Description":<30} {"Quantity":<10} {"Unit Price (AED)":<15} {"Total Price (AED)":<15}
+{"-"*70}
+{item1.get_item_code():<10} {item1.get_description():<30} {item1.get_quantity():<10} {item1.get_unit_price():<15.2f} {item1.calculate_total_price():<15.2f}
+{item2.get_item_code():<10} {item2.get_description():<30} {item2.get_quantity():<10} {item2.get_unit_price():<15.2f} {item2.calculate_total_price():<15.2f}
+{item3.get_item_code():<10} {item3.get_description():<30} {item3.get_quantity():<10} {item3.get_unit_price():<15.2f} {item3.calculate_total_price():<15.2f}
+{item4.get_item_code():<10} {item4.get_description():<30} {item4.get_quantity():<10} {item4.get_unit_price():<15.2f} {item4.calculate_total_price():<15.2f}
+
+Subtotal: AED {payment1.get_amount() - 13.50:.2f}
+Taxes and Fees: AED 13.50
+Total Charges: AED {payment1.get_amount():.2f}
+"""
+
+# Print the Delivery Note
+print(delivery_note)
