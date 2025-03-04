@@ -1,1 +1,183 @@
+# Customer class
+class Customer:
+    def __init__(self, name, contact, address):
+        self.__name = name
+        self.__contact = contact
+        self.__address = address
+        self.__orders = []  # List to store orders
+
+    # Getters
+    def get_name(self):
+        return self.__name
+
+    def get_contact(self):
+        return self.__contact
+
+    def get_address(self):
+        return self.__address
+
+    # Setters
+    def set_name(self, name):
+        self.__name = name
+
+    def set_contact(self, contact):
+        self.__contact = contact
+
+    def set_address(self, address):
+        self.__address = address
+
+    # Methods
+    def place_order(self, order):
+        """Adds a new order to the customer's order list."""
+        self.__orders.append(order)
+
+    def cancel_order(self, order_id):
+        """Cancels an order based on order ID."""
+        pass  # To be implemented
+
+    def track_order(self, order_id):
+        """Tracks the status of an order."""
+        pass  # To be implemented
+
+
+# Order class
+class Order:
+    def __init__(self, order_id, customer, delivery_method):
+        self.__order_id = order_id
+        self.__customer = customer
+        self.__items = []  # List to store ordered items
+        self.__status = "Pending"
+        self.__delivery_method = delivery_method
+        self.__total_weight = 0.0
+
+    # Getters
+    def get_order_id(self):
+        return self.__order_id
+
+    def get_status(self):
+        return self.__status
+
+    def get_delivery_method(self):
+        return self.__delivery_method
+
+    # Setters
+    def set_status(self, status):
+        self.__status = status
+
+    def set_delivery_method(self, method):
+        self.__delivery_method = method
+
+    # Methods
+    def update_status(self, new_status):
+        """Updates the order status."""
+        self.__status = new_status
+
+    def generate_delivery_note(self):
+        """Generates a delivery note for the order."""
+        pass  # To be implemented
+
+    def add_item(self, item):
+        """Adds an item to the order."""
+        self.__items.append(item)
+
+
+# Item class
+class Item:
+    def __init__(self, item_code, description, quantity, unit_price):
+        self.__item_code = item_code
+        self.__description = description
+        self.__quantity = quantity
+        self.__unit_price = unit_price
+
+    # Getters
+    def get_item_code(self):
+        return self.__item_code
+
+    def get_description(self):
+        return self.__description
+
+    def get_quantity(self):
+        return self.__quantity
+
+    def get_unit_price(self):
+        return self.__unit_price
+
+    # Setters
+    def set_quantity(self, quantity):
+        self.__quantity = quantity
+
+    def set_unit_price(self, price):
+        self.__unit_price = price
+
+    # Methods
+    def calculate_total_price(self):
+        """Calculates the total price of the item."""
+        return self.__quantity * self.__unit_price
+
+
+# Payment class
+class Payment:
+    def __init__(self, payment_id, order_id, amount):
+        self.__payment_id = payment_id
+        self.__order_id = order_id
+        self.__amount = amount
+        self.__status = "Pending"
+
+    # Getters
+    def get_payment_id(self):
+        return self.__payment_id
+
+    def get_order_id(self):
+        return self.__order_id
+
+    def get_amount(self):
+        return self.__amount
+
+    def get_status(self):
+        return self.__status
+
+    # Setters
+    def set_status(self, status):
+        self.__status = status
+
+    # Methods
+    def verify_payment(self):
+        """Verifies if the payment is successful."""
+        pass  # To be implemented
+
+    def process_refund(self):
+        """Processes a refund for a canceled order."""
+        pass  # To be implemented
+
+
+# DeliveryPerson class
+class DeliveryPerson:
+    def __init__(self, name, employee_id, phone):
+        self.__name = name
+        self.__employee_id = employee_id
+        self.__phone = phone
+        self.__assigned_orders = []
+
+    # Getters
+    def get_name(self):
+        return self.__name
+
+    def get_employee_id(self):
+        return self.__employee_id
+
+    def get_phone(self):
+        return self.__phone
+
+    # Setters
+    def set_phone(self, phone):
+        self.__phone = phone
+
+    # Methods
+    def update_delivery_status(self, order_id, status):
+        """Updates the delivery status of an order."""
+        pass  # To be implemented
+
+    def confirm_delivery(self, order_id):
+        """Confirms the delivery of an order."""
+        pass  # To be implemented
 
